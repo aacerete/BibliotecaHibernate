@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="Objetos.Prestamo" table="PRESTAMO">
+        <meta attribute="class-description">
+            This class contains the libros detail.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="increment"/>
+        </id>
+        <property name="idLibro" column="idLibro" type="string"/>
+        <property name="idSocio" column="idSocio" type="string"/>
+        <property name="fechaIni" column="fechaIni" type="string"/>
+        <property name="fechaFin" column="fechaFin" type="string"/>
+    </class>
+</hibernate-mapping>

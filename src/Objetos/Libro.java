@@ -1,9 +1,11 @@
 package Objetos;
 
+import java.io.Serializable;
+
 /**
  * Created by 46990527d on 24/01/17.
  */
-public class Libro {
+public class Libro implements Serializable {
 
     private int id;
     private String titulo;

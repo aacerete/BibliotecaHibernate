@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+        <!DOCTYPE hibernate-mapping PUBLIC
+                "-//Hibernate/Hibernate Mapping DTD//EN"
+                "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="Objetos.Libro" table="LIBRO">
+        <meta attribute="class-description">
+            This class contains the libros detail.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="increment"/>        </id>
+        <property name="titulo" column="titulo" type="string"/>
+        <property name="unidades" column="unidades" type="string"/>
+        <property name="editorial" column="editorial" type="string"/>
+        <property name="paginas" column="paginas" type="string"/>
+        <property name="anoEdicion" column="anoEdicion" type="string"/>
+    </class>
+</hibernate-mapping>
