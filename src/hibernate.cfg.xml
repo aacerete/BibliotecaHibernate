@@ -11,11 +11,11 @@
         <property name="connection.username">aacerete</property>
         <property name="connection.password">aacerete</property>
 
-        <property name="hibernate.hbm2ddl.auto">create-drop</property>
+     <!--   <property name="hibernate.hbm2ddl.auto">create-drop</property> -->
 
         <mapping resource="libro.hbm.xml"/>
-        <!--<mapping resource="socio.hbm.xml"/>
-        <mapping resource="prestamo.hbm.xml"/> -->
+      <mapping resource="socio.hbm.xml"/>
+        <!--<mapping resource="prestamo.hbm.xml"/> -->
 
     </session-factory>
 </hibernate-configuration>

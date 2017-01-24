@@ -26,8 +26,8 @@
     <schema id="8" parent="1" name="public">
       <object-id>2200</object-id>
       <visible>1</visible>
-      <introspection-state-number>9987</introspection-state-number>
-      <introspection-timestamp>2017-01-24.18:21:53.806</introspection-timestamp>
+      <introspection-state-number>10011</introspection-state-number>
+      <introspection-timestamp>2017-01-24.20:32:49.837</introspection-timestamp>
     </schema>
     <schema id="9" parent="1" name="pg_catalog">
       <object-id>11</object-id>
@@ -57,8 +57,8 @@
       <state-number>9982</state-number>
     </sequence>
     <table id="17" parent="8" name="libro">
-      <object-id>57752</object-id>
-      <state-number>9987</state-number>
+      <object-id>65682</object-id>
+      <state-number>10011</state-number>
     </table>
     <table id="18" parent="8" name="prestamo">
       <object-id>57742</object-id>
@@ -69,38 +69,38 @@
       <state-number>9983</state-number>
     </table>
     <column id="20" parent="17" name="id">
-      <state-number>9987</state-number>
+      <state-number>10011</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
     <column id="21" parent="17" name="titulo">
-      <state-number>9987</state-number>
+      <state-number>10011</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="22" parent="17" name="unidades">
-      <state-number>9987</state-number>
+      <state-number>10011</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="23" parent="17" name="editorial">
-      <state-number>9987</state-number>
+      <state-number>10011</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="24" parent="17" name="paginas">
-      <state-number>9987</state-number>
+      <state-number>10011</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="25" parent="17" name="anoedicion">
-      <state-number>9987</state-number>
+      <state-number>10011</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
     <index id="26" parent="17" name="libro_pkey">
-      <object-id>57758</object-id>
+      <object-id>65688</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
     <key id="27" parent="17" name="libro_pkey">
-      <object-id>57759</object-id>
+      <object-id>65689</object-id>
       <columns>id</columns>
       <underlying-index>libro_pkey</underlying-index>
       <primary>1</primary>
