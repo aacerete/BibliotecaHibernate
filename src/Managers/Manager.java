@@ -1,10 +1,10 @@
 package Managers;
 
 import java.util.List;
-import java.util.Date;
 import java.util.Iterator;
 
 import Objetos.Libro;
+import Objetos.Socio;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,7 +13,7 @@ import org.hibernate.cfg.Configuration;
 /**
  * Created by 46990527d on 24/01/17.
  */
-public class ManageLibro {
+public class Manager {
 
     private static SessionFactory factory;
     public static void main(String[] args) {
@@ -23,21 +23,26 @@ public class ManageLibro {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
-        ManageLibro ML = new ManageLibro();
+        Manager M = new Manager();
+
 
       /* Add few employee records in database */
-        Integer libro1 = ML.addLibro("Quijote", "5", "planeta", "1000","2010");
-        Integer libro2 = ML.addLibro("Programacion para inutiles", "3", "bruguera", "113","2014");
-        Integer libro3 = ML.addLibro("Manifiesto Comunista", "1", "Rojos league", "300","1950");
+        Integer libro1 = M.addLibro("Quijote", "5", "planeta", "1000","2010");
+        Integer libro2 = M.addLibro("Programacion para inutiles", "3", "bruguera", "113","2014");
+        Integer libro3 = M.addLibro("Manifiesto Comunista", "1", "Rojos league", "300","1950");
+        Integer socio1 = M.addSocio("Pau", "Fernandez", "27", "Av roma 15","665342133");
+        Integer socio2 = M.addSocio("Carlos", "Lopez", "65", "Provenza 45","662666014");
+        Integer socio3 = M.addSocio("Karl", "Marx", "36", "Lisboa 43","616731950");
+
 
       /* List down all the employees
-        ML.listLibro();
+        M.listLibro();
 
        /* Delete an employee from the database
-        ML.deleteLibro(libro2);
+        M.deleteLibro(libro2);
 
       /* List down new list of the employees
-        ML.listLibro(); */
+        M.listLibro(); */
     }
     /* Method to CREATE an employee in the database */
     public Integer addLibro(String titulo, String unidades, String editorial, String paginas, String anoEdicion){
@@ -100,4 +105,66 @@ public class ManageLibro {
             session.close();
         }
     }
+
+    public Integer addSocio(String nombre, String apellido, String edad, String direccion, String telefono){
+        Session session = factory.openSession();
+        Transaction tx = null;
+        Integer socioID = null;
+        try{
+            tx = session.beginTransaction();
+            Socio socio = new Socio(nombre,apellido,edad,direccion, telefono);
+            socioID = (Integer) session.save(socio);
+            tx.commit();
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return socioID;
+    }
+    /* Method to  READ all the employees */
+    public void listSocio( ){
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            List socios = session.createQuery("FROM Objetos.Socio").list();
+            for (Iterator iterator =
+                 socios.iterator(); iterator.hasNext();){
+                Socio socio = (Socio) iterator.next();
+                System.out.print(" Nombre: " + socio.getNombre());
+                System.out.print("  Apellido: " + socio.getApellido());
+                System.out.println("  Edad: " + socio.getEdad());
+                System.out.print("  Direccion: " + socio.getDireccion());
+                System.out.print("  Telefono: " + socio.getTelefono());
+            }
+            tx.commit();
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+    }
+
+
+    /* Method to DELETE an employee from the records */
+    public void deleteSocio(Integer SocioID){
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            Socio socio =
+                    (Socio) session.get(Socio.class, SocioID);
+            session.delete(socio);
+            tx.commit();
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+    }
+
 }

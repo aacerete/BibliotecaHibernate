@@ -5,12 +5,12 @@ package Objetos;
  */
 public class Socio {
 
-    private Integer id;
-    String nombre;
-    String apellido;
-    String edad;
-    String direccion;
-    String telefono;
+    private int id;
+    private String nombre;
+    private String apellido;
+    private String edad;
+    private String direccion;
+    private String telefono;
 
     public Socio(String nombre, String apellido, String edad, String direccion, String telefono) {
         this.nombre = nombre;

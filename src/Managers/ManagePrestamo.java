@@ -1,6 +1,7 @@
 package Managers;
 
 import Objetos.Libro;
+import Objetos.Prestamo;
 import Objetos.Socio;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -12,9 +13,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by 46990527d on 24/01/17.
+ * Created by 46990527d on 25/01/17.
  */
-public class ManageSocio {
+public class ManagePrestamo {
     private static SessionFactory factory;
     public static void main(String[] args) {
         try{
@@ -23,32 +24,35 @@ public class ManageSocio {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
+        ManagePrestamo MP = new ManagePrestamo();
 
-        ManageSocio MS = new ManageSocio();
+        Integer libro1 =
+        Integer libro2 =
+        Integer libro3 =
 
       /* Add few employee records in database */
-        Integer socio1 = MS.addSocio("Pau", "Fernandez", "27", "Av roma 15","665342133");
-        Integer socio2 = MS.addSocio("Carlos", "Lopez", "65", "Provenza 45","662666014");
-        Integer socio3 = MS.addSocio("Karl", "Marx", "36", "Lisboa 43","616731950");
+        Integer prestamo1 = MP.addPrestamo("1", "2", "12/02/17", "20/02/17");
+        Integer prestamo2 = MP.addPrestamo("Carlos", "Lopez", "65", "Provenza 45","662666014");
+        Integer prestamo3 = MP.addPrestamo("Karl", "Marx", "36", "Lisboa 43","616731950");
 
       /* List down all the employees
-        MS.listLibro();
+        MP.listLibro();
 
        /* Delete an employee from the database
-        MS.deleteLibro(libro2);
+        MP.deleteLibro(libro2);
 
       /* List down new list of the employees
-        MS.listLibro(); */
+        MP.listLibro(); */
     }
     /* Method to CREATE an employee in the database */
-    public Integer addSocio(String nombre, String apellido, String edad, String direccion, String telefono){
+    public Integer addPrestamo(Libro idLibro, Socio idSocio, String fechaIni, String fechaFin){
         Session session = factory.openSession();
         Transaction tx = null;
-        Integer socioID = null;
+        Integer prestamoID = null;
         try{
             tx = session.beginTransaction();
-            Socio socio = new Socio(nombre,apellido,edad,direccion, telefono);
-            socioID = (Integer) session.save(socio);
+            Prestamo prestamo = new Prestamo(idLibro,idSocio,fechaIni,fechaFin);
+            prestamoID = (Integer) session.save(prestamo);
             tx.commit();
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -56,23 +60,23 @@ public class ManageSocio {
         }finally {
             session.close();
         }
-        return socioID;
+        return prestamoID;
     }
     /* Method to  READ all the employees */
-    public void listSocio( ){
+    public void listPrestamo( ){
         Session session = factory.openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            List socios = session.createQuery("FROM Objetos.Socio").list();
+            List prestamos = session.createQuery("FROM Objetos.Prestamo").list();
             for (Iterator iterator =
-                 socios.iterator(); iterator.hasNext();){
-                Socio socio = (Socio) iterator.next();
-                System.out.print(" Nombre: " + socio.getNombre());
-                System.out.print("  Apellido: " + socio.getApellido());
-                System.out.println("  Edad: " + socio.getEdad());
-                System.out.print("  Direccion: " + socio.getDireccion());
-                System.out.print("  Telefono: " + socio.getTelefono());
+                 prestamos.iterator(); iterator.hasNext();){
+                Prestamo prestamo = (Prestamo) iterator.next();
+                System.out.print(" Id del prestamo: " + prestamo.getId());
+                System.out.print("  Libro: " + prestamo.getIdLibro());
+                System.out.println("  Socio: " + prestamo.getIdSocio());
+                System.out.print("  Fecha de inicio: " + prestamo.getFechaIni());
+                System.out.print("  Fecha fin: " + prestamo.getFechaFin());
             }
             tx.commit();
         }catch (HibernateException e) {
@@ -85,14 +89,14 @@ public class ManageSocio {
 
 
     /* Method to DELETE an employee from the records */
-    public void deleteSocio(Integer SocioID){
+    public void deletePrestamo(Integer PrestamoID){
         Session session = factory.openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            Socio socio =
-                    (Socio) session.get(Socio.class, SocioID);
-            session.delete(socio);
+            Prestamo prestamo =
+                    (Prestamo) session.get(Prestamo.class, PrestamoID);
+            session.delete(prestamo);
             tx.commit();
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
