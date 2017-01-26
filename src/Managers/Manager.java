@@ -23,26 +23,26 @@ public class Manager {
             System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex);
         }
+
         Manager M = new Manager();
 
-
-      /* Add few employee records in database */
+      /* Add few employee records in database
         Integer libro1 = M.addLibro("Quijote", "5", "planeta", "1000","2010");
         Integer libro2 = M.addLibro("Programacion para inutiles", "3", "bruguera", "113","2014");
         Integer libro3 = M.addLibro("Manifiesto Comunista", "1", "Rojos league", "300","1950");
         Integer socio1 = M.addSocio("Pau", "Fernandez", "27", "Av roma 15","665342133");
         Integer socio2 = M.addSocio("Carlos", "Lopez", "65", "Provenza 45","662666014");
         Integer socio3 = M.addSocio("Karl", "Marx", "36", "Lisboa 43","616731950");
+ */
 
-
-      /* List down all the employees
+      /* List down all the employees */
         M.listLibro();
 
        /* Delete an employee from the database
         M.deleteLibro(libro2);
 
-      /* List down new list of the employees
-        M.listLibro(); */
+      /* List down new list of the employees */
+        M.listSocio();
     }
     /* Method to CREATE an employee in the database */
     public Integer addLibro(String titulo, String unidades, String editorial, String paginas, String anoEdicion){
@@ -72,11 +72,18 @@ public class Manager {
             for (Iterator iterator =
                  libros.iterator(); iterator.hasNext();){
                 Libro libro = (Libro) iterator.next();
+                System.out.println(" ID: " + libro.getId());
+                System.out.println();
                 System.out.print(" Título: " + libro.getTitulo());
+                System.out.println();
                 System.out.print("  Unidades: " + libro.getUnidades());
+                System.out.println();
                 System.out.println("  Editorial: " + libro.getEditorial());
                 System.out.print("  Paginas: " + libro.getPaginas());
+                System.out.println();
                 System.out.print("  Año de edición: " + libro.getAnoEdicion());
+                System.out.println();
+                System.out.println("-------------------------------------------");
             }
             tx.commit();
         }catch (HibernateException e) {
@@ -133,11 +140,18 @@ public class Manager {
             for (Iterator iterator =
                  socios.iterator(); iterator.hasNext();){
                 Socio socio = (Socio) iterator.next();
+                System.out.println(" ID: " + socio.getId());
+                System.out.println();
                 System.out.print(" Nombre: " + socio.getNombre());
+                System.out.println();
                 System.out.print("  Apellido: " + socio.getApellido());
+                System.out.println();
                 System.out.println("  Edad: " + socio.getEdad());
                 System.out.print("  Direccion: " + socio.getDireccion());
+                System.out.println();
                 System.out.print("  Telefono: " + socio.getTelefono());
+                System.out.println();
+                System.out.println("--------------------------------------");
             }
             tx.commit();
         }catch (HibernateException e) {

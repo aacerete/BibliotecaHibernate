@@ -25,12 +25,12 @@ public class ManagePrestamo {
             throw new ExceptionInInitializerError(ex);
         }
         ManagePrestamo MP = new ManagePrestamo();
-
+/*
         Integer libro1 =
         Integer libro2 =
         Integer libro3 =
 
-      /* Add few employee records in database */
+       Add few employee records in database
         Integer prestamo1 = MP.addPrestamo("1", "2", "12/02/17", "20/02/17");
         Integer prestamo2 = MP.addPrestamo("Carlos", "Lopez", "65", "Provenza 45","662666014");
         Integer prestamo3 = MP.addPrestamo("Karl", "Marx", "36", "Lisboa 43","616731950");
