@@ -9,27 +9,31 @@ public class Libro implements Serializable {
 
     private int id;
     private String titulo;
-    private String unidades;
+    private String autor;
     private String editorial;
     private String paginas;
     private String anoEdicion;
+    private boolean prestado;
 
     //CONSTRUCTOR
-    public Libro(String titulo, String unidades, String editorial, String paginas, String anoEdicion) {
+    public Libro(String titulo, String autor, String editorial, String paginas, String anoEdicion, boolean prestado) {
 
         this.titulo = titulo;
-        this.unidades = unidades;
         this.editorial = editorial;
         this.paginas = paginas;
         this.anoEdicion = anoEdicion;
+        this.prestado = false;
     }
 
-
     public Libro(){}
+
+    public Libro(String titulo, String autor, String editorial, String paginas, boolean prestado){}
 
     public Libro(int id){
         this.id = id;
     }
+
+
 
     // GETTERS & SETTERS
     public int getId() {
@@ -48,12 +52,12 @@ public class Libro implements Serializable {
         this.titulo = titulo;
     }
 
-    public String getUnidades() {
-        return unidades;
+    public String getAutor() {
+        return autor;
     }
 
-    public void setUnidades(String unidades) {
-        this.unidades = unidades;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public String getEditorial() {
@@ -80,12 +84,24 @@ public class Libro implements Serializable {
         this.anoEdicion = anoEdicion;
     }
 
+    public boolean isPrestado() {
+        return prestado;
+    }
 
+    public void setPrestado(boolean prestado) {
+        this.prestado = prestado;
+    }
 
-    // METODOS GENERALES
     @Override
     public String toString() {
-        return id+" - "+titulo+ " de "+paginas+"pags. "
-                +"\n Ed. "+editorial+" fueron editadas "+unidades+" en "+anoEdicion ;
+        return "Libro{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", editorial='" + editorial + '\'' +
+                ", paginas='" + paginas + '\'' +
+                ", anoEdicion='" + anoEdicion + '\'' +
+                ", prestado=" + prestado +
+                '}';
     }
 }

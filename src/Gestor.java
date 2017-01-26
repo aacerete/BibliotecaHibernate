@@ -1,4 +1,5 @@
-import Managers.ManageSocio;
+
+import Objetos.Libro;
 import Objetos.Socio;
 
 import java.util.Scanner;
@@ -12,6 +13,8 @@ public class Gestor {
 
         int option = 0;
         Scanner sc = new Scanner(System.in);
+        Scanner scStr = new Scanner(System.in);
+        DAO dao = new DAO();
 
         do {
 
@@ -76,12 +79,27 @@ public class Gestor {
                         switch (option) {
 
                             case 1:
+                                Libro libro = new Libro();
+
+                                System.out.println("Introduce el titulo");
+                                libro.setTitulo(sc.next());
+                                System.out.println("Introduce el autor");
+                                libro.setAutor(sc.next());
+                                System.out.println("Introduce la editorial");
+                                libro.setEditorial(sc.next());
+                                System.out.println("Introduce el año de edicion");
+                                libro.setAnoEdicion(sc.next());
+                                libro.setPrestado(false);
+                                dao.añadirLibro(libro);
                                 break;
                             case 2:
+                                dao.obtenerLibros();
                                 break;
                             case 3:
                                 break;
                             case 4:
+                                break;
+                            case 5:
                                 break;
                         }
 
@@ -103,15 +121,32 @@ public class Gestor {
                         System.out.println(" Escoja opcion: ");
 
                         option = sc.nextInt();
+
+
                         switch (option) {
 
                             case 1:
+                                Socio socio = new Socio();
+                                System.out.println("Introduce el nombre");
+                                socio.setNombre(scStr.nextLine());
+
+                                System.out.println("Introduce el apellido");
+                                socio.setApellido(scStr.nextLine());
+                                System.out.println("Introduce la edad");
+                                socio.setEdad(scStr.nextLine());
+                                System.out.println("Introduce la dirección");
+                                socio.setDireccion(scStr.nextLine());
+                                System.out.println("Introduce el teléfono");
+                                socio.setTelefono(scStr.nextLine());
+                                dao.añadirSocio(socio);
                                 break;
                             case 2:
+                                dao.obtenirSocios();
                                 break;
                             case 3:
                                 break;
                             case 4:
+                                //dao.eliminarSocio();
                                 break;
                         }
                     }
@@ -149,34 +184,20 @@ public class Gestor {
                 //  String s;
 
                 case 1:
-                    Socio socio = new Socio();
-                    System.out.println("Introduce el nombre");
-                    socio.setNombre(sc.next());
-                    System.out.println("Introduce el apellido");
-                    socio.setApellido(sc.next());
-                    System.out.println("Introduce la edad");
-                    socio.setEdad(sc.next());
-                    System.out.println("Introduce la dirección");
-                    socio.setDireccion(sc.next());
-                    System.out.println("Introduce el teléfono");
-                    socio.setTelefono(sc.next());
+
 
                     break;
                 case 2:
-                    System.out.println("Introduce el Id de la pelicula");
-                    int ID = sc.nextInt();
-                    //   verMovies(ID);
+
                     break;
                 case 3:
-                    //    verActor();
+
                     break;
                 case 4:
-                    System.out.println("Introduce el ID del actor");
-                    ID = sc.nextInt();
-                    //      selectPostgres.verMoviesActor(ID);
+
                     break;
                 case 5:
-                    System.out.println("Fin");
+
                     break;
             }
         } while (option != 5);

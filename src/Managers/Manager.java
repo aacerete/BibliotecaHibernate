@@ -45,13 +45,13 @@ public class Manager {
         M.listSocio();
     }
     /* Method to CREATE an employee in the database */
-    public Integer addLibro(String titulo, String unidades, String editorial, String paginas, String anoEdicion){
+    public Integer addLibro(String titulo, String autor, String editorial, String paginas, boolean prestado){
         Session session = factory.openSession();
         Transaction tx = null;
         Integer libroID = null;
         try{
             tx = session.beginTransaction();
-            Libro libro = new Libro(titulo,unidades,editorial,paginas, anoEdicion);
+            Libro libro = new Libro(titulo,autor ,editorial,paginas, prestado);
             libroID = (Integer) session.save(libro);
             tx.commit();
         }catch (HibernateException e) {
@@ -76,13 +76,14 @@ public class Manager {
                 System.out.println();
                 System.out.print(" Título: " + libro.getTitulo());
                 System.out.println();
-                System.out.print("  Unidades: " + libro.getUnidades());
+                System.out.print("  Autor: " + libro.getAutor());
                 System.out.println();
                 System.out.println("  Editorial: " + libro.getEditorial());
                 System.out.print("  Paginas: " + libro.getPaginas());
                 System.out.println();
                 System.out.print("  Año de edición: " + libro.getAnoEdicion());
                 System.out.println();
+                System.out.println("    Prestado : " + libro.isPrestado());
                 System.out.println("-------------------------------------------");
             }
             tx.commit();

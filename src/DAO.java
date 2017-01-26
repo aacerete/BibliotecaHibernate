@@ -18,7 +18,7 @@ public class DAO {
 
     // Metodos para anyadir información a la BBDD
 
-    public void añadirLibro(Libro libro) throws HibernateException {
+    public  void añadirLibro(Libro libro) throws HibernateException {
 
         try  {
             // Con estas dos lineas hacemos la conexión a nuestra BBDD
@@ -133,7 +133,7 @@ public class DAO {
         transaction = session.beginTransaction();
 
         // Obtenemos todos los libros
-        Query query = session.createQuery("FROM libro ");
+        Query query = session.createQuery("FROM Objetos.Libro ");
         return (ArrayList<Libro>) query.list();
     }
 
@@ -144,7 +144,7 @@ public class DAO {
         transaction = session.beginTransaction();
 
         // Obtenemos todos los socios
-        Query query = session.createQuery("FROM Socio ");
+        Query query = session.createQuery("FROM Objetos.Socio ");
         return (ArrayList<Socio>) query.list();
     }
 
@@ -155,7 +155,7 @@ public class DAO {
         transaction = session.beginTransaction();
 
         // Obtenemos todos los prestamos
-        Query query = session.createQuery("FROM Prestamo ");
+        Query query = session.createQuery("FROM Objetos.Prestamo ");
         return (ArrayList<Prestamo>) query.list();
     }
 
@@ -169,7 +169,7 @@ public class DAO {
             transaction = session.beginTransaction();
 
             // Eliminamos todos los libros
-            session.createQuery("DELETE FROM Libro").executeUpdate();
+            session.createQuery("DELETE FROM Objetos.Libro").executeUpdate();
             transaction.commit();
             session.close();
             return true;
@@ -187,7 +187,7 @@ public class DAO {
             transaction = session.beginTransaction();
 
             // Eliminamos todos los socios
-            session.createQuery("DELETE FROM Socio").executeUpdate();
+            session.createQuery("DELETE FROM Objetos.Socio").executeUpdate();
             transaction.commit();
             session.close();
             return true;
@@ -205,7 +205,7 @@ public class DAO {
             transaction = session.beginTransaction();
 
             // Eliminamos todos los prestamos
-            session.createQuery("DELETE FROM Prestamo").executeUpdate();
+            session.createQuery("DELETE FROM Objetos.Prestamo").executeUpdate();
             transaction.commit();
             session.close();
             return true;

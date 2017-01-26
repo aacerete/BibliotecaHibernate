@@ -12,7 +12,7 @@
             <generator class="increment"/>
         </id>
         <property name="titulo" column="titulo" type="string"/>
-        <property name="unidades" column="unidades" type="string"/>
+        <property name="autor" column="autor" type="string"/>
         <property name="editorial" column="editorial" type="string"/>
         <property name="paginas" column="paginas" type="string"/>
         <property name="anoEdicion" column="anoEdicion" type="string"/>
