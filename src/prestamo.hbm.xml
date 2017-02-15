@@ -4,16 +4,16 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="Objetos.Prestamo" table="PRESTAMO">
+    <class name="Objetos.Prestamo" table="prestamo">
         <meta attribute="class-description">
-            This class contains the libros detail.
+            This class contains the employee detail.
         </meta>
         <id name="id" type="int" column="id">
             <generator class="increment"/>
         </id>
-        <property name="idLibro" column="idLibro" type="string"/>
-        <property name="idSocio" column="idSocio" type="string"/>
-        <property name="fechaIni" column="fechaIni" type="string"/>
-        <property name="fechaFin" column="fechaFin" type="string"/>
+        <property name="idLibro" column="idLibro" type="int"/>
+        <property name="idSocio" column="idSocio" type="int"/>
+        <property name="fechaInicio" column="fechaInicio" type="date"/>
+        <property name="fechaFinal" column="fechaFinal" type="date"/>
     </class>
 </hibernate-mapping>

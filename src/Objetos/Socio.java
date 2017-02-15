@@ -7,30 +7,36 @@ public class Socio {
 
     private int id;
     private String nombre;
-    private String apellido;
-    private String edad;
+    private int edad;
     private String direccion;
-    private String telefono;
+    private int telefono;
 
-    public Socio(String nombre, String apellido, String edad, String direccion, String telefono) {
+    public Socio() {
+    }
+
+    public Socio(String nombre, int edad, String direccion, int telefono) {
         this.nombre = nombre;
-        this.apellido = apellido;
         this.edad = edad;
         this.direccion = direccion;
         this.telefono = telefono;
     }
 
-    public Socio(){}
+    public Socio(int id, String nombre, int edad, String direccion, int telefono) {
+        this.id=id;
+        this.nombre = nombre;
+        this.edad = edad;
+        this.direccion = direccion;
+        this.telefono = telefono;
 
-    public Socio(int id){
-        this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
 
-    //GETTERS & SETTERS
-    public int getId() { return id; }
-
-    public void setId(int id) { this.id = id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -40,19 +46,11 @@ public class Socio {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
@@ -64,19 +62,11 @@ public class Socio {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
-    }
-
-
-    // METODOS GENERALES
-    @Override
-    public String toString() {
-        return id+" - "+nombre+ " "+apellido+" de "+edad+" años "
-                +"\n vive en "+direccion+" con tlfn. "+telefono;
     }
 }

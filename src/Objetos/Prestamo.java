@@ -1,31 +1,36 @@
 package Objetos;
 
+import java.util.Date;
+
 /**
  * Created by 46990527d on 24/01/17.
  */
 public class Prestamo {
 
     private int id;
-    private Libro idLibro;
-    private Socio idSocio;
-    private String fechaIni;
-    private String fechaFin;
+    private int idLibro;
+    private int idSocio;
+    private Date fechaInicio;
+    private Date fechaFinal;
 
-    //CONSTRUCTORES
-    public Prestamo(Libro idLibro, Socio idSocio, String fechaIni, String fechaFin) {
+    public Prestamo() {
+    }
+
+    public Prestamo(int idLibro, int idSocio, Date fechaInicio, Date fechaFinal) {
         this.idLibro = idLibro;
         this.idSocio = idSocio;
-        this.fechaIni = fechaIni;
-        this.fechaFin = fechaFin;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
     }
 
-    public Prestamo(){}
-
-    public Prestamo(int id){
-        this.id = id;
+    public Prestamo(int id, int idLibro, int idSocio, Date fechaInicio, Date fechaFinal) {
+        this.id=id;
+        this.idLibro = idLibro;
+        this.idSocio = idSocio;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
     }
 
-    // GETTERS & SETTERS
     public int getId() {
         return id;
     }
@@ -34,47 +39,46 @@ public class Prestamo {
         this.id = id;
     }
 
-    public void setIdLibro(Libro idLibro) {
-        this.idLibro = idLibro;
-    }
-
-    public Libro getIdLibro() {
+    public int getIdLibro() {
         return idLibro;
     }
 
-    public void setLibro(Libro idLibro) {
+    public void setIdLibro(int idLibro) {
         this.idLibro = idLibro;
     }
 
-    public Socio getIdSocio() {
+    public int getIdSocio() {
         return idSocio;
     }
 
-    public void setIdSocio(Socio idSocio) {
+    public void setIdSocio(int idSocio) {
         this.idSocio = idSocio;
     }
 
-    public String getFechaIni() {
-        return fechaIni;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFechaIni(String fechaIni) {
-        this.fechaIni = fechaIni;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
-    public String getFechaFin() {
-        return fechaFin;
+    public Date getFechaFinal() {
+        return fechaFinal;
     }
 
-    public void setFechaFin(String fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFechaFinal(Date fechaFinal) {
+        this.fechaFinal = fechaFinal;
     }
 
-
-    // METODOS GENERALES
     @Override
     public String toString() {
-        return id+" - libro:"+ idLibro.getId()+" prestado a socio "+idSocio.getId()
-                +"\n Prestamos realizado el "+fechaIni+" a devolver el "+fechaFin;
+        return "Prestamo{" +
+                "id=" + id +
+                ", idLibro=" + idLibro +
+                ", idSocio=" + idSocio +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFinal=" + fechaFinal +
+                '}';
     }
 }

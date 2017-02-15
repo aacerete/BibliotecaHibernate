@@ -5,37 +5,37 @@ import java.io.Serializable;
 /**
  * Created by 46990527d on 24/01/17.
  */
-public class Libro implements Serializable {
+
+
+public class Libro {
 
     private int id;
     private String titulo;
-    private String autor;
-    private String editorial;
-    private String paginas;
-    private String anoEdicion;
-    private boolean prestado;
+    private int numEjemplares;
+    private String Editorial;
+    private int numPaginas;
+    private int anyoEdicion;
 
-    //CONSTRUCTOR
-    public Libro(String titulo, String autor, String editorial, String paginas, String anoEdicion, boolean prestado) {
-
-        this.titulo = titulo;
-        this.editorial = editorial;
-        this.paginas = paginas;
-        this.anoEdicion = anoEdicion;
-        this.prestado = false;
+    public Libro() {
     }
 
-    public Libro(){}
-
-    public Libro(String titulo, String autor, String editorial, String paginas, boolean prestado){}
-
-    public Libro(int id){
-        this.id = id;
+    public Libro(String titulo, int numEjemplares, String editorial, int numPaginas, int anyoEdicion) {
+        this.titulo=titulo;
+        this.numEjemplares=numEjemplares;
+        this.anyoEdicion=anyoEdicion;
+        this.Editorial=editorial;
+        this.numPaginas=numPaginas;
     }
 
+    public Libro(int id, String titulo, int numEjemplares, String editorial, int numPaginas, int anyoEdicion) {
+        this.id=id;
+        this.titulo=titulo;
+        this.numEjemplares=numEjemplares;
+        this.anyoEdicion=anyoEdicion;
+        this.Editorial=editorial;
+        this.numPaginas=numPaginas;
+    }
 
-
-    // GETTERS & SETTERS
     public int getId() {
         return id;
     }
@@ -52,56 +52,35 @@ public class Libro implements Serializable {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
-        return autor;
+    public int getNumEjemplares() {
+        return numEjemplares;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setNumEjemplares(int numEjemplares) {
+        this.numEjemplares = numEjemplares;
     }
 
     public String getEditorial() {
-        return editorial;
+        return Editorial;
     }
 
     public void setEditorial(String editorial) {
-        this.editorial = editorial;
+        Editorial = editorial;
     }
 
-    public String getPaginas() {
-        return paginas;
+    public int getNumPaginas() {
+        return numPaginas;
     }
 
-    public void setPaginas(String paginas) {
-        this.paginas = paginas;
+    public void setNumPaginas(int numPaginas) {
+        this.numPaginas = numPaginas;
     }
 
-    public String getAnoEdicion() {
-        return anoEdicion;
+    public int getAnyoEdicion() {
+        return anyoEdicion;
     }
 
-    public void setAnoEdicion(String anoEdicion) {
-        this.anoEdicion = anoEdicion;
-    }
-
-    public boolean isPrestado() {
-        return prestado;
-    }
-
-    public void setPrestado(boolean prestado) {
-        this.prestado = prestado;
-    }
-
-    @Override
-    public String toString() {
-        return "Libro{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", autor='" + autor + '\'' +
-                ", editorial='" + editorial + '\'' +
-                ", paginas='" + paginas + '\'' +
-                ", anoEdicion='" + anoEdicion + '\'' +
-                ", prestado=" + prestado +
-                '}';
+    public void setAnyoEdicion(int anyoEdicion) {
+        this.anyoEdicion = anyoEdicion;
     }
 }

@@ -15,7 +15,7 @@
 
         <mapping resource="libro.hbm.xml"/>
       <mapping resource="socio.hbm.xml"/>
-        <!--<mapping resource="prestamo.hbm.xml"/> -->
+        <mapping resource="prestamo.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

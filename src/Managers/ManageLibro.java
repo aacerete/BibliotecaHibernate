@@ -1,95 +1,87 @@
 package Managers;
 
 import Objetos.Libro;
-import Objetos.Prestamo;
-import Objetos.Socio;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by 46990527d on 25/01/17.
+ * Created by aacerete on 15/02/17.
  */
-public class ManagePrestamo {
+public class ManageLibro {
 
     private static SessionFactory factory;
 
-    public Integer addPrestamos(int idLibro, int idSocio, Date fechaInicio, Date fechaFinal){
 
+    public Integer addLibro(String titulo, int numEjemplares, String editorial, int numPaginas, int anyoEdicion) {
         factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
         Transaction tx = null;
-
-        Integer IDprestamo = null;
-
+        Integer libroID = null;
         try{
             tx = session.beginTransaction();
-            Prestamo prestamo = new Prestamo(idLibro,idSocio, fechaInicio, fechaFinal);
-            IDprestamo = (Integer) session.save(prestamo);
+            Libro libro = new Libro(titulo, numEjemplares, editorial, numPaginas, anyoEdicion);
+            libroID = (Integer) session.save(libro);
             tx.commit();
-
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
-
         }finally {
             session.close();
         }
-        return IDprestamo;
+        return libroID;
     }
 
-    public List listPrestamos( ){
 
+    public List listLibros( ){
         factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
         Transaction tx = null;
-
-        List prestamos= null;
-
+        List libros=null;
         try{
             tx = session.beginTransaction();
-            prestamos = session.createQuery("FROM Prestamo").list();
-            for (Iterator iterator =
-                 prestamos.iterator(); iterator.hasNext(); ) {
-                Prestamo prestamo = (Prestamo) iterator.next();
+            libros = session.createQuery("FROM Libro").list();
 
-                System.out.print("Id : " + prestamo.getId()+"\n");
-                System.out.print("Id Libro: " + prestamo.getIdLibro()+"\n");
-                System.out.print("Id Socio: " + prestamo.getIdSocio()+"\n");
-                System.out.println("Fecha Ini: " + prestamo.getFechaInicio());
-                System.out.println("Fecha Fin: " + prestamo.getFechaFinal());
-                System.out.println("--------------------------------------");
-
+            for (Iterator iterator = libros.iterator(); iterator.hasNext();){
+                Libro libro = (Libro) iterator.next();
+                System.out.print("ID: " + libro.getId()+"\n");
+                System.out.print("Titulo: " + libro.getTitulo()+"\n");
+                System.out.print("Ejemplares: " + libro.getNumEjemplares()+"\n");
+                System.out.print("Editorial: " + libro.getEditorial()+"\n");
+                System.out.print("Num. Paginas: " + libro.getNumPaginas()+"\n");
+                System.out.println("Año Edicion: " + libro.getAnyoEdicion()+"\n");
+                System.out.println();
             }
             tx.commit();
-
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
-
         }finally {
             session.close();
         }
-        return prestamos;
+        return libros;
     }
 
-    public void updatePrestamo(Integer PrestamoID,int idLibro, int idSocio, Date fechaIni, Date fechaFi){
 
+    public void updateLibro(Integer LibroID, String titulo, int numEjemplares, String editorial, int numPaginas, int anyoEdicion) {
         factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
         Transaction tx = null;
-
         try{
             tx = session.beginTransaction();
-            Prestamo prestamo =
-                    (Prestamo)session.get(Prestamo.class, PrestamoID);
-            prestamo.setIdLibro(idLibro);
+            Libro libro =
+                    (Libro)session.get(Libro.class, LibroID);
+            libro.setTitulo( titulo );
+            libro.setNumEjemplares( numEjemplares );
+            libro.setEditorial( editorial );
+            libro.setNumPaginas( numPaginas );
+            libro.setAnyoEdicion( anyoEdicion );
+            session.update(libro);
             tx.commit();
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -99,16 +91,15 @@ public class ManagePrestamo {
         }
     }
 
-
-    public void deletePrestamo(Integer PrestamoID){
+    public void deleteLibro(Integer LibroID){
         factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            Prestamo prestamo =
-                    (Prestamo)session.get(Prestamo.class, PrestamoID);
-            session.delete(prestamo);
+            Libro libro =
+                    (Libro)session.get(Libro.class, LibroID);
+            session.delete(libro);
             tx.commit();
         }catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -117,4 +108,5 @@ public class ManagePrestamo {
             session.close();
         }
     }
+
 }
