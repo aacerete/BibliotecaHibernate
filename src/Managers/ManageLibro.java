@@ -17,12 +17,15 @@ public class ManageLibro {
 
     private static SessionFactory factory;
 
-
+    //añadir libro a la bbdd y darle id
     public Integer addLibro(String titulo, int numEjemplares, String editorial, int numPaginas, int anyoEdicion) {
+
         factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
         Transaction tx = null;
+
         Integer libroID = null;
+
         try{
             tx = session.beginTransaction();
             Libro libro = new Libro(titulo, numEjemplares, editorial, numPaginas, anyoEdicion);
@@ -38,11 +41,15 @@ public class ManageLibro {
     }
 
 
+    //listar libros
     public List listLibros( ){
+
         factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
         Transaction tx = null;
+
         List libros=null;
+
         try{
             tx = session.beginTransaction();
             libros = session.createQuery("FROM Libro").list();
@@ -68,10 +75,13 @@ public class ManageLibro {
     }
 
 
+    //actualizar libro
     public void updateLibro(Integer LibroID, String titulo, int numEjemplares, String editorial, int numPaginas, int anyoEdicion) {
+
         factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
         Transaction tx = null;
+
         try{
             tx = session.beginTransaction();
             Libro libro =
@@ -91,10 +101,13 @@ public class ManageLibro {
         }
     }
 
+    //borrar libro
     public void deleteLibro(Integer LibroID){
+
         factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
         Transaction tx = null;
+
         try{
             tx = session.beginTransaction();
             Libro libro =

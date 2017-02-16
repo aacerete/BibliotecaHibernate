@@ -18,6 +18,7 @@ public class ManageSocio {
 
     private static SessionFactory factory;
 
+    //añadir socios
     public Integer addSocios(String nombre, int edad, String direccion, int telefono){
 
         factory = new Configuration().configure().buildSessionFactory();
@@ -45,7 +46,7 @@ public class ManageSocio {
         return socioID;
     }
 
-
+    //listar socios
     public List listSocios( ) {
 
         factory = new Configuration().configure().buildSessionFactory();
@@ -78,7 +79,7 @@ public class ManageSocio {
         return socios;
     }
 
-
+    //Actualizar socios
     public void updateSocio(Integer SocioID,String nombre, int edad, String direccion, int telefono){
 
         factory = new Configuration().configure().buildSessionFactory();
@@ -103,7 +104,7 @@ public class ManageSocio {
         }
     }
 
-
+    //borrar socio
     public void deleteSocio(Integer SocioID){
 
         factory = new Configuration().configure().buildSessionFactory();

@@ -67,7 +67,7 @@ public class Main {
     }
 
 
-    //Gestionar libros
+    //Menu de gestion de libros
     public static void gestionarLibro() {
 
         boolean salir = false;
@@ -107,6 +107,7 @@ public class Main {
 
     }
 
+    //metodo para introducir nuevos libros en la BBDD
     public static void introduceLibro() {
 
         ManageLibro ML = new ManageLibro();
@@ -138,6 +139,7 @@ public class Main {
 
     }
 
+    //metodo para actualziar los libros a partir de la ID
     public static void actualizaLibroById() {
 
         ManageLibro ML = new ManageLibro();
@@ -173,6 +175,8 @@ public class Main {
 
     }
 
+
+    //metodo para eliminar libros
     public static void eliminarLibro() {
 
         Scanner sc = new Scanner(System.in);
@@ -187,6 +191,7 @@ public class Main {
 
     }
 
+    //menu de gestion de socios
     public static void gestionarSocio() {
 
         boolean sor = false;
@@ -226,6 +231,7 @@ public class Main {
     }
 
 
+    //metodo para introducir socios
     public static void IntroduceSocio() {
 
         ManageSocio MS = new ManageSocio();
@@ -251,6 +257,8 @@ public class Main {
 
     }
 
+
+    //metodo para actualizar socios a partir de la ID
     public static void ActualizaSocioById() {
 
         int id;
@@ -281,6 +289,7 @@ public class Main {
     }
 
 
+    //metodo para eliminar socios
     public static void eliminarSocio() {
 
         System.out.println("Introduce la id");
@@ -295,6 +304,7 @@ public class Main {
     }
 
 
+    //menu para obtener los listados de libros socios o prestamos
     public static void listados() {
 
         boolean sor = false;
@@ -332,22 +342,26 @@ public class Main {
     }
 
 
+    //metodo para listar libros
     public static void listaLibros()    {
         ManageLibro ML = new ManageLibro();
         ML.listLibros();
     }
 
+    //metodo para listar socios
     public static void listaSocios() {
         ManageSocio MS = new ManageSocio();
         MS.listSocios();
     }
 
+    //metodo para listar prestamos
     public static void listaPrestamos(){
 
         ManagePrestamo MP = new ManagePrestamo();
         MP.listPrestamos();
     }
 
+    //metodo para introducir un prestamo
     public static void realizarPrestamo() {
 
         ManagePrestamo MP = new ManagePrestamo();
@@ -378,6 +392,7 @@ public class Main {
     }
 
 
+    //metodo para formatear fechas
     public static Date getDate(String fechaString)    {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -393,8 +408,7 @@ public class Main {
     }
 
 
-
-
+    //metodo para listar aquellos prestamos que estan caducados
     public static void listaPrestamosCaducados()    {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -405,13 +419,13 @@ public class Main {
 
         simpleDateFormat.format(date);
 
-
         ManagePrestamo MP = new ManagePrestamo();
         List prestamos = MP.listPrestamos();
 
         for (Iterator iterator = prestamos.iterator(); iterator.hasNext(); ) {
             Prestamo prestamo = (Prestamo) iterator.next();
 
+            //si la fecha de entrega es anterior a la fecha de hoy, mostrara el prestamo caducado
             if (prestamo.getFechaFinal().before(date)){
 
                 System.out.print("ID : " + prestamo.getId());

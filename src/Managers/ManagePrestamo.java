@@ -20,6 +20,7 @@ public class ManagePrestamo {
 
     private static SessionFactory factory;
 
+    //añadir prestamos
     public Integer addPrestamos(int idLibro, int idSocio, Date fechaInicio, Date fechaFinal){
 
         factory = new Configuration().configure().buildSessionFactory();
@@ -44,6 +45,7 @@ public class ManagePrestamo {
         return IDprestamo;
     }
 
+    //listar prestamos
     public List listPrestamos( ){
 
         factory = new Configuration().configure().buildSessionFactory();
@@ -79,6 +81,7 @@ public class ManagePrestamo {
         return prestamos;
     }
 
+    //actualizar prestamo
     public void updatePrestamo(Integer PrestamoID,int idLibro, int idSocio, Date fechaIni, Date fechaFi){
 
         factory = new Configuration().configure().buildSessionFactory();
@@ -99,7 +102,7 @@ public class ManagePrestamo {
         }
     }
 
-
+    //borrar prestamo
     public void deletePrestamo(Integer PrestamoID){
         factory = new Configuration().configure().buildSessionFactory();
         Session session = factory.openSession();
